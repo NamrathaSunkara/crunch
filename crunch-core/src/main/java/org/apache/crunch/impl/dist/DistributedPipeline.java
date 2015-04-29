@@ -62,10 +62,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public abstract class DistributedPipeline implements Pipeline {
   private static final Logger LOG = LoggerFactory.getLogger(DistributedPipeline.class);
@@ -406,7 +403,7 @@ public abstract class DistributedPipeline implements Pipeline {
   private static Path createTemporaryPath(Configuration conf) {
     //TODO: allow configurable
     String baseDir = conf.get("crunch.tmp.dir", "/tmp");
-    return new Path(baseDir, "crunch-" + (RANDOM.nextInt() & Integer.MAX_VALUE));
+    return new Path(baseDir, "crunch-" + UUID.randomUUID().toString());
   }
 
   @Override
